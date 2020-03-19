@@ -11,15 +11,15 @@ public class HomeTask
 		System.out.println("Get only numbers from string: " + testString);
 
 		System.out.println("Using RegExp:");
-		String words[] = testString.split(" ");
+		String[] words = testString.split(" ");
 		for (String word : words) {
-			if (Pattern.compile("(^[0-9]+)([^\\D]*)").matcher(word).find()) {
+			if (Pattern.compile("(^[0-9]+)").matcher(word.trim()).find() && !Pattern.compile("([\\D])").matcher(word.trim()).find()) {
 				System.out.println("Number: " + word);
 			}
 		}
 
 		System.out.println("\nUsing String processing by Character:");
-		boolean isNumber = true;
+		boolean isNumber;
 		for (String word : words) {
 			isNumber = true;
 			for (char c : word.toCharArray()) {
@@ -63,7 +63,7 @@ public class HomeTask
 		System.out.println("After: " + testString);
 
 
-		String newWords[] = {
+		String[] newWords = {
 				"0abc   2cde  3degfhdfjdgtjf     4dchd 5dfghdh 6frghsh     ",
 				"1abc   2cde  3degfhdfjdgtjf   4dchd 5dfghdh 6frghsh ",
 				"2abc   2cde  3degfhdfjdgtjf 4dchd 5dfghdh 6frvxcbngfhmgfchmghsh ",
@@ -94,7 +94,7 @@ public class HomeTask
 		int cnt = 0;
 		newWords = testString.split(" ");
 		for (String w : newWords) {
-			if (w.trim().length() > 0 && w.toCharArray()[0] == '\n') { w = w.substring(1, w.length()); }
+			if (w.trim().length() > 0 && w.toCharArray()[0] == '\n') { w = w.substring(1); }
 			if (w.trim().length() > 0) {
 				System.out.println(w);
 				cnt++;
