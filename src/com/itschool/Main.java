@@ -45,11 +45,11 @@ public class Main {
 
 
       // Правильное сравнение строк на равенство в Java
-      System.out.println("Введите число 11111");
+      System.out.println("\nПравильное сравнение строк на равенство в Java\nВведите число '11111': ");
       number2 = scanner.nextLine();
       System.out.println("|" + number1 + "|");
       System.out.println("|" + number2 + "|");
-      System.out.println("Равенство объектов: " + number1 == number2);
+      System.out.println("Равенство объектов: " + (number1 == number2));
       System.out.println("Равенство значений: " + number1.equals(number2));
       System.out.println();
 
@@ -232,15 +232,17 @@ public class Main {
 
       // Проверка соответствия автомобильного номера формату украинских номеров 2020 года
       String number = " ВH1234aE ";
-      System.out.println((isCorrectAutoNumber(number) ? "Correct" : "Incorrect") + " number");
+      System.out.println(number + (isCorrectAutoNumber(number) ? "" : "НЕ") + "корректный автомобильный номер");
       System.out.println();
 
       // Преобразование всей строки к нижнему регистру, а первой буквы - к строчной
+      System.out.println("\nПреобразование всей строки к нижнему регистру, а первой буквы - к строчной:");
       String name = "iVANOV";
-      System.out.println(capitalize(name));
+      System.out.println(name + " -> " + capitalize(name));
       System.out.println();
 
       // Шифрование строки шифром Цезаря
+      System.out.println("\nШифрование/дешифрование строки шифром Цезаря:");
       String cryptedText = CaesarCipher("CAESAR");
       System.out.println(cryptedText);
       String decryptedText = CaesarUnCipher(cryptedText);
@@ -249,6 +251,7 @@ public class Main {
 
 
       // Шифрование строки шифром Виженера
+      System.out.println("\nШифрование/дешифрование строки шифром Виженера:");
       String text = "The Vigenere cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword.";
       System.out.println((alphabetVigenere = getAlphabet(text))); // Формирование алфавита
       fillVigenereTable(alphabetVigenere);                        // Заполнение таблицы для шифрования
@@ -266,6 +269,7 @@ public class Main {
 
 
       // Генерация и проверка пароля
+      System.out.println("\nГенерация и проверка пароля:");
       String password = generatePassword(8);
       System.out.println("Сгенерирован пароль: " + password);
       System.out.println("Корректен ли пароль: " + password + "\t- " + isCorrectPassword(password));
@@ -279,6 +283,7 @@ public class Main {
 
 
       // Формирование английского алфавита циклом
+      System.out.println("\nФормирование всего английского алфавита (в верхнем и нижнем регистре) одним циклом:");
       String UCASE_letters = "";
       for (char c = 'A'; c <= 'z'; c++) {
          if (c > 'Z' && c < 'a') continue;
@@ -294,13 +299,14 @@ public class Main {
       boolean isCorrectNumber = false;
 
       do {
+         System.out.println("Введите целочисленное значение (можно попробовать сделать это с ошибкой): ");
          string = scanner.nextLine();
          try {
             first = Integer.parseInt(string);
             System.out.println(first);
             isCorrectNumber = true;
          } catch (NumberFormatException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error: " + e.getLocalizedMessage());
          }
       } while (!isCorrectNumber);
    }
@@ -407,13 +413,14 @@ public class Main {
     * Проверка производительности поиска в строке при помощи регулярных выражений
     */
    private static void regexpExample() {
+      System.out.println("\nПроверка производительности поиска в строке при помощи регулярных выражений:");
       String text = "Егор Алла Александр";
       long start = System.currentTimeMillis();
       String result = "";
       Pattern pattern;
       Matcher matcher;
+      pattern = Pattern.compile("А.+а");
       for (int i = 0; i < 1000000; i++) {
-         pattern = Pattern.compile("А.+а");
          matcher = pattern.matcher(text);
          matcher.find();
          {
@@ -423,7 +430,7 @@ public class Main {
       }
 
       long stop = System.currentTimeMillis();
-      System.out.println(stop - start);
+      System.out.println("При помощи регулярных выражений:\t" + (stop - start) + " мс");
 
       int p1, p2;
       for (int i = 0; i < 1000000; i++) {
@@ -431,7 +438,7 @@ public class Main {
          p2 = text.lastIndexOf("а");
          result = text.substring(p1, p2);
       }
-      System.out.println(System.currentTimeMillis() - stop);
+      System.out.println("С использованием линейного поиска:\t" + (System.currentTimeMillis() - stop) + " мс");
    }
 
    /**
