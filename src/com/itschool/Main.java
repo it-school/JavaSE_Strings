@@ -435,7 +435,7 @@ public class Main {
       int p1, p2;
       for (int i = 0; i < 1000000; i++) {
          p1 = text.indexOf("А");
-         p2 = text.lastIndexOf("а");
+         p2 = text.indexOf("а", p1 + 1);
          result = text.substring(p1, p2);
       }
       System.out.println("С использованием линейного поиска:\t" + (System.currentTimeMillis() - stop) + " мс");
